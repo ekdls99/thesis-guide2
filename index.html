@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>석·박사 학위논문 dCollection 온라인 제출 가이드 | POSTECH 학술정보팀</title>
+    <meta name="description" content="POSTECH 석·박사 학위논문 dCollection 온라인 제출 절차 및 저작권 설정 안내 — 학술정보팀 제공">
+
+    <!-- Pretendard 폰트 (CDN) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+    <style>
+        /* ====================================================
+           CSS 변수 — 색상, 레이아웃 치수
+        ==================================================== */
+        :root {
+            --c-primary:        #862633;
+            --c-primary-dark:   #6b1d27;
+            --c-primary-light:  #f5e6e8;
+            --c-text:           #1a1a1a;
+            --c-text-muted:     #5a5a5a;
+            --c-border:         #e0e0e0;
+            --c-bg:             #ffffff;
+            --c-bg-subtle:      #f7f7f7;
+
+            --sidebar-w:     240px;
+            --header-h:      60px;
+            --content-max:   820px;
+            --gap:           2.5rem;
+
+            --font: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+
+            --radius-sm: 4px;
+            --radius-md: 8px;
+        }
+
+        /* ====================================================
+           리셋 & 기본
+        ==================================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--c-text);
+            background: var(--c-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--c-primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        ul, ol { padding-left: 1.4rem; }
+        li { margin-bottom: 0.3rem; line-height: 1.75; }
+
+        p { margin-bottom: 0.8rem; }
+        p:last-child { margin-bottom: 0; }
+
+        /* ====================================================
+           헤더
+        ==================================================== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--header-h);
+            background: var(--c-bg);
+            border-bottom: 2px solid var(--c-primary);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .site-logo {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+        .site-logo small {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 400;
+            color: var(--c-text-muted);
+            letter-spacing: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .header-nav a {
+            font-size: 0.82rem;
+            color: var(--c-text-muted);
+            font-weight: 500;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+        .header-nav a:hover { color: var(--c-primary); text-decoration: none; }
+
+        .btn-header {
+            background: var(--c-primary);
+            color: #fff !important;
+            padding: 0.38rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem !important;
+            font-weight: 600 !important;
+            transition: background 0.2s;
+            /* 버튼 요소일 때 폰트 일치 */
+            font-family: var(--font);
+            cursor: pointer;
+            border: none;
+            line-height: 1.5;
+        }
+        .btn-header:hover { background: var(--c-primary-dark) !important; }
+
+        /* 햄버거 (모바일) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--c-text);
+            border-radius: 2px;
+            transition: all 0.25s;
+        }
+
+        /* ====================================================
+           히어로
+        ==================================================== */
+        .hero {
+            background: var(--c-primary);
+            color: #fff;
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 0.28rem 0.85rem;
+            border-radius: 100px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.55rem, 3.5vw, 2.1rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.3;
+            margin-bottom: 0.85rem;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            opacity: 0.88;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 0.85rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.72rem 1.4rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-family: var(--font);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.18s;
+            text-decoration: none;
+        }
+        .btn:hover { text-decoration: none; }
+
+        .btn-solid {
+            background: #fff;
+            color: var(--c-primary);
+        }
+        .btn-solid:hover { background: #f0e6e8; color: var(--c-primary-dark); }
+
+        .btn-ghost {
+            background: transparent;
+            color: #fff;
+            border-color: rgba(255,255,255,0.55);
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+        /* ====================================================
+           레이아웃 (사이드바 + 본문)
+        ==================================================== */
+        .layout-wrap {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: var(--sidebar-w) 1fr;
+            gap: var(--gap);
+            padding: 2.5rem 0 3rem;
+            align-items: start;
+        }
+
+        /* ====================================================
+           사이드바 — 목차 (TOC)
+        ==================================================== */
+        .sidebar {
+            position: sticky;
+            top: calc(var(--header-h) + 1.25rem);
+            max-height: calc(100vh - var(--header-h) - 2.5rem);
+            overflow-y: auto;
+        }
+
+        /* 스크롤바 얇게 */
+        .sidebar::-webkit-scrollbar { width: 3px; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 3px; }
+
+        .toc { border-left: 2px solid var(--c-border); padding-left: 1rem; }
+
+        .toc-heading {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-text-muted);
+            margin-bottom: 0.7rem;
+        }
+
+        .toc-list { list-style: none; padding: 0; }
+        .toc-item { margin-bottom: 0.15rem; }
+
+        .toc-link {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--c-text-muted);
+            padding: 0.28rem 0.5rem;
+            border-radius: var(--radius-sm);
+            border-left: 2px solid transparent;
+            margin-left: -1rem;
+            padding-left: 0.9rem;
+            line-height: 1.45;
+            transition: color 0.18s, background 0.18s, border-color 0.18s;
+        }
+        .toc-link:hover {
+            color: var(--c-primary);
+            background: var(--c-primary-light);
+            text-decoration: none;
+        }
+        .toc-link.active {
+            color: var(--c-primary);
+            font-weight: 600;
+            border-left-color: var(--c-primary);
+            background: var(--c-primary-light);
+        }
+
+        /* ====================================================
+           본문 공통
+        ==================================================== */
+        .content { min-width: 0; }
+
+        .section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: calc(var(--header-h) + 1.25rem);
+        }
+
+        /* 섹션 헤더 줄 */
+        .section-hd {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 2px solid var(--c-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--c-primary);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .section-hd h2 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--c-primary);
+            letter-spacing: -0.02em;
+        }
+
+        /* 소제목 */
+        .sub { margin-bottom: 1.5rem; }
+
+        .sub h3,
+        .sub-h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--c-text);
+            border-left: 3px solid var(--c-primary);
+            padding-left: 0.65rem;
+            margin-bottom: 0.65rem;
+            line-height: 1.5;
+        }
+
+        /* ====================================================
+           강조 노트 — 배경 없음, 좌측 보더 라인 (방식 A)
+        ==================================================== */
+        .callout {
+            font-size: 0.875rem;
+            line-height: 1.78;
+            padding: 0.2rem 0 0.2rem 1rem;
+            margin: 1rem 0;
+            color: #444;
+        }
+
+        /* 중요 안내 (반송·오류 경고) — 와인레드 보더 */
+        .callout-danger,
+        .callout-warn {
+            border-left: 2px solid var(--c-primary);
+        }
+
+        /* 참고·예시 정보 — 중립 회색 보더 */
+        .callout-info {
+            border-left: 2px solid #ccc;
+            color: #555;
+        }
+
+        .callout strong { font-weight: 700; color: inherit; }
+        .callout small  { font-size: 0.8em; color: #777; }
+        .callout a      { color: var(--c-primary); }
+        .callout a:hover { text-decoration: underline; }
+
+        /* 가로 구분선 노트 (방식 C) — 정책성 긴 설명 */
+        .note-rule {
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 0.75rem 0;
+            margin: 1.25rem 0;
+            font-size: 0.875rem;
+            line-height: 1.78;
+            color: #555;
+        }
+
+        /* ====================================================
+           번호 매긴 리스트 — 순서 있는 구성 요소 (장치 1)
+        ==================================================== */
+        .num-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            border-top: 1px solid #ececec;
+        }
+        .num-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 1.2rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid #ececec;
+            margin: 0;
+        }
+        .num-list .n {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+            min-width: 1.8rem;
+        }
+        .num-list .txt {
+            font-size: 0.92rem;
+            color: var(--c-text);
+            line-height: 1.6;
+        }
+        .num-list .txt-sub {
+            font-size: 0.79rem;
+            color: var(--c-text-muted);
+            display: block;
+            margin-top: 0.15rem;
+            font-weight: 400;
+        }
+
+        /* ====================================================
+           핵심 강조 (페이지당 1개) — 와인레드 상하 선 (장치 6)
+        ==================================================== */
+        .featured-note {
+            border-top: 1px solid var(--c-primary);
+            border-bottom: 1px solid var(--c-primary);
+            padding: 0.95rem 0;
+            margin: 1.75rem 0;
+            font-size: 0.96rem;
+            line-height: 1.75;
+            color: var(--c-text);
+            font-weight: 500;
+        }
+
+        /* ====================================================
+           인라인 라벨 (장치 3) — 배경·박스 없음
+        ==================================================== */
+        .inline-note {
+            font-size: 0.875rem;
+            line-height: 1.78;
+            margin: 0.8rem 0;
+            color: #555;
+        }
+        .inline-note:last-child { margin-bottom: 0; }
+        .note-label {
+            font-weight: 700;
+            color: var(--c-primary);
+            font-size: 0.8rem;
+            margin-right: 0.25em;
+        }
+
+        /* ====================================================
+           2단 그리드 (장치 2) — 병렬 정보
+        ==================================================== */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 1.25rem 0;
+        }
+        .two-col > div + div {
+            border-left: 1px solid #e5e5e5;
+            padding-left: 1.5rem;
+        }
+
+        /* ====================================================
+           큰 숫자 강조 (장치 5) — 정량 정보
+        ==================================================== */
+        .stat-list {
+            margin: 1.25rem 0;
+            border-top: 1px solid #ececec;
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #ececec;
+        }
+        .stat-item:last-child { border-bottom: none; }
+        .stat-num {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            min-width: 6rem;
+            flex-shrink: 0;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .stat-desc {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-svc {
+            font-size: 0.88rem;
+            color: var(--c-text);
+            line-height: 1.5;
+        }
+        .stat-sys {
+            font-size: 0.76rem;
+            color: #999;
+            margin-top: 0.1rem;
+        }
+
+        /* ====================================================
+           셀프 체크리스트
+        ==================================================== */
+        .checklist-wrap {
+            border-left: 2px solid #e5e5e5;
+            padding: 0.5rem 0 0.75rem 1rem;
+            margin-top: 1rem;
+        }
+
+        .checklist-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .cl-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.3rem 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* 커스텀 체크박스 */
+        .cl-box {
+            width: 17px;
+            height: 17px;
+            border: 2px solid #bbb;
+            border-radius: 3px;
+            flex-shrink: 0;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+        .cl-item.checked .cl-box {
+            background: var(--c-primary);
+            border-color: var(--c-primary);
+        }
+        .cl-item.checked .cl-box::after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 8px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg) translateY(-1px);
+        }
+
+        .cl-label {
+            font-size: 0.87rem;
+            color: var(--c-text);
+            line-height: 1.65;
+            transition: color 0.15s;
+        }
+        .cl-item.checked .cl-label {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .cl-reset {
+            margin-top: 0.8rem;
+            font-size: 0.76rem;
+            font-family: var(--font);
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+        }
+        .cl-reset:hover { color: var(--c-primary); }
+
+        /* ====================================================
+           단계 (Step) 표시 — 숫자만, 원형 없음
+        ==================================================== */
+        .steps { margin: 0.8rem 0 1rem; border-top: 1px solid #ececec; }
+
+        .step {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid #ececec;
+            margin-bottom: 0;
+        }
+        .step:last-child { border-bottom: none; }
+
+        .step-n {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            flex-shrink: 0;
+            min-width: 1.8rem;
+            letter-spacing: 0.04em;
+        }
+
+        .step-body {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--c-text);
+        }
+
+        /* ====================================================
+           테이블
+        ==================================================== */
+        .tbl-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--c-border);
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.84rem;
+            white-space: normal;
+        }
+
+        thead { background: none; color: var(--c-text-muted); }
+
+        th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.82rem;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        td {
+            padding: 0.68rem 1rem;
+            border-bottom: 1px solid var(--c-border);
+            line-height: 1.65;
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:nth-child(even) td { background: none; }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+        }
+        .tag-green  { background: #e4f4e8; color: #1a6b30; }
+        .tag-amber  { background: #fff0c8; color: #7a5200; }
+        .tag-red    { background: var(--c-primary-light); color: var(--c-primary); }
+
+        /* ====================================================
+           이미지 (향후 추가 대비)
+        ==================================================== */
+        .guide-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            display: block;
+            margin: 0.75rem 0;
+        }
+
+        /* ====================================================
+           FAQ 아코디언
+        ==================================================== */
+        .faq-section {
+            background: var(--c-bg-subtle);
+            border-top: 1px solid var(--c-border);
+            padding: 3rem 1.5rem;
+        }
+
+        .faq-inner {
+            max-width: var(--content-max);
+            margin: 0 auto;
+        }
+
+        .faq-heading {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--c-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+
+        .faq-item {
+            background: var(--c-bg);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: var(--font);
+            color: var(--c-text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            line-height: 1.5;
+            transition: background 0.15s;
+        }
+        .faq-q:hover { background: var(--c-primary-light); }
+        .faq-q[aria-expanded="true"] {
+            color: var(--c-primary);
+            background: var(--c-primary-light);
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--c-border);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            line-height: 1;
+            transition: transform 0.28s, border-color 0.18s, color 0.18s;
+            color: var(--c-text-muted);
+        }
+        .faq-q[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+            border-color: var(--c-primary);
+            color: var(--c-primary);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.32s ease;
+        }
+
+        .faq-a-inner {
+            padding: 0 1.2rem 1rem;
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+            line-height: 1.78;
+        }
+
+        /* ====================================================
+           문의 모달
+        ==================================================== */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-backdrop.open { display: flex; }
+
+        .modal-card {
+            background: var(--c-bg);
+            border-radius: var(--radius-md);
+            padding: 1.75rem 2rem;
+            width: min(360px, 90vw);
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.7rem;
+            right: 0.7rem;
+            width: 28px;
+            height: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.15rem;
+            color: var(--c-text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-family: var(--font);
+            transition: background 0.15s, color 0.15s;
+        }
+        .modal-close:hover {
+            background: var(--c-bg-subtle);
+            color: var(--c-text);
+        }
+
+        .modal-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            padding-bottom: 0.85rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .modal-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.88rem;
+        }
+        .modal-row:last-child { margin-bottom: 0; }
+
+        .modal-label {
+            width: 2.8rem;
+            flex-shrink: 0;
+            color: var(--c-text-muted);
+            font-size: 0.8rem;
+            padding-top: 0.05rem;
+        }
+
+        .modal-val {
+            color: var(--c-text);
+            font-weight: 500;
+        }
+        .modal-val a {
+            color: var(--c-primary);
+            text-decoration: none;
+        }
+        .modal-val a:hover { text-decoration: underline; }
+
+        /* ====================================================
+           푸터
+        ==================================================== */
+        .site-footer {
+            background: #1c1c1c;
+            color: #c0c0c0;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .footer-sub {
+            font-size: 0.78rem;
+            color: #888;
+            line-height: 1.75;
+        }
+        .footer-sub a { color: #aaa; transition: color 0.18s; }
+        .footer-sub a:hover { color: #fff; text-decoration: none; }
+
+        .footer-col-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 0.65rem;
+        }
+
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 0.32rem; }
+        .footer-links a { font-size: 0.8rem; color: #999; transition: color 0.18s; }
+        .footer-links a:hover { color: #fff; text-decoration: none; }
+
+        .footer-bottom {
+            max-width: 1140px;
+            margin: 1.5rem auto 0;
+            padding-top: 1.2rem;
+            border-top: 1px solid #333;
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        /* ====================================================
+           맨 위로 버튼
+        ==================================================== */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            width: 40px;
+            height: 40px;
+            background: var(--c-primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s, background 0.18s;
+            box-shadow: 0 3px 14px rgba(134, 38, 51, 0.4);
+            z-index: 60;
+        }
+        .scroll-top-btn.show { opacity: 1; pointer-events: auto; }
+        .scroll-top-btn:hover { background: var(--c-primary-dark); }
+
+        /* ====================================================
+           모바일 사이드바 오버레이
+        ==================================================== */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.38);
+            z-index: 85;
+        }
+        .overlay.open { display: block; }
+
+        /* ====================================================
+           반응형
+        ==================================================== */
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; }
+
+            /* 사이드바를 슬라이드 드로어로 변환 */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -280px;
+                width: 260px;
+                height: 100vh;
+                background: var(--c-bg);
+                z-index: 90;
+                padding: 4rem 1.5rem 2rem;
+                box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+                transition: left 0.28s ease;
+                max-height: none;
+                overflow-y: auto;
+            }
+            .sidebar.open { left: 0; }
+
+            .hamburger { display: flex; }
+            .header-nav .btn-header { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 2.5rem 1.25rem; }
+            .hero-actions { flex-direction: column; }
+            .btn { justify-content: center; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .header-nav a:not(.btn-header) { display: none; }
+            th, td { padding: 0.55rem 0.7rem; font-size: 0.8rem; }
+            .two-col { grid-template-columns: 1fr; }
+            .two-col > div + div {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid #e5e5e5;
+                padding-top: 1rem;
+                margin-top: 0.5rem;
+            }
+            .stat-num { min-width: 4.5rem; font-size: 1rem; }
+        }
+
+        /* ====================================================
+           인쇄 스타일
+        ==================================================== */
+        @media print {
+            /* 인터랙션 요소 모두 숨김 */
+            .site-header,
+            .sidebar,
+            .hero-actions,
+            .faq-section,
+            .site-footer,
+            .overlay,
+            .scroll-top-btn,
+            .hamburger,
+            .modal-backdrop,
+            .cl-reset { display: none !important; }
+
+            /* 레이아웃 단순화 */
+            .layout { grid-template-columns: 1fr; padding: 1rem 0; }
+
+            /* 히어로를 흑백으로 */
+            .hero {
+                background: #fff;
+                color: #000;
+                border-bottom: 3px solid #862633;
+                padding: 1.5rem 0;
+            }
+            .hero-badge { background: #eee; color: #333; }
+
+            /* 섹션 페이지 분리 방지 */
+            .section { page-break-inside: avoid; }
+            .sub     { page-break-inside: avoid; }
+
+            /* 이미지 페이지 중간에서 잘리지 않도록 */
+            img, figure, .guide-img { page-break-inside: avoid; }
+
+            /* 테이블 가독성 */
+            .tbl-wrap { border: 1px solid #ccc; }
+            table     { page-break-inside: avoid; }
+            thead     { color: #333 !important; }
+            th        { border-bottom: 2px solid #ccc; }
+
+            /* 새 시각 장치 */
+            .featured-note { border-color: #555; }
+            .note-label    { color: #333; }
+            .stat-num      { color: #333; }
+            .num-list .n   { color: #333; }
+            .step-n        { color: #333; }
+            .two-col       { grid-template-columns: 1fr 1fr; }
+
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========================================================
+     헤더
+======================================================== -->
+<header class="site-header" role="banner">
+    <div class="header-inner">
+        <div class="site-logo" aria-label="POSTECH 학술정보팀">
+            POSTECH 학술정보팀
+            <small>POSTECH Library · Academic Information</small>
+        </div>
+
+        <nav class="header-nav" aria-label="빠른 링크">
+            <a href="https://postech.dcollection.net/login" target="_blank" rel="noopener">dCollection 바로가기 ↗</a>
+            <!-- 문의하기: 모달 트리거 -->
+            <button id="contactBtn" class="btn-header" aria-haspopup="dialog" aria-label="문의하기">문의하기</button>
+        </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="목차 열기" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+
+<!-- ========================================================
+     히어로 섹션
+======================================================== -->
+<section class="hero" aria-labelledby="hero-title">
+    <div class="hero-badge">석·박사 학위논문 안내</div>
+    <h1 id="hero-title">dCollection 온라인 제출 가이드</h1>
+    <p>
+        학위논문 제출에 필요한 서류 준비부터 시스템 이용 방법,<br>
+        저작권 설정까지 단계별로 안내합니다.
+    </p>
+    <div class="hero-actions">
+        <a href="https://postech.dcollection.net/login" target="_blank" rel="noopener" class="btn btn-solid">
+            제출 시작하기 (dCollection) ↗
+        </a>
+        <a href="#section-2" class="btn btn-ghost">체크리스트 보기</a>
+    </div>
+</section>
+
+
+<!-- ========================================================
+     모바일 사이드바 오버레이
+======================================================== -->
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+
+<!-- ========================================================
+     메인 레이아웃 — 사이드바 + 본문
+======================================================== -->
+<div class="layout-wrap">
+    <div class="layout">
+
+        <!-- 좌측 사이드바 (TOC) -->
+        <aside class="sidebar" id="sidebar" aria-label="페이지 목차">
+            <nav class="toc" aria-label="목차">
+                <div class="toc-heading">목차</div>
+                <ul class="toc-list" role="list">
+                    <li class="toc-item">
+                        <a href="#section-1" class="toc-link">1. 학위논문 양식</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#section-2" class="toc-link">2. 제출 전 PDF 파일 점검</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#section-3" class="toc-link">3. 시스템 접속 및 로그인</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#section-4" class="toc-link">4. 원문 업로드 및 메타데이터</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#section-5" class="toc-link">5. 저작권 설정</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#section-6" class="toc-link">6. 관리자 검수 및 최종 제출</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#section-7" class="toc-link">7. 알아두면 좋은 정보</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+
+        <!-- 우측 본문 -->
+        <main class="content" id="main-content">
+
+            <!-- =============================================
+                 섹션 1 — 학위논문 양식
+            ============================================= -->
+            <section class="section" id="section-1" aria-labelledby="s1-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">1</div>
+                    <h2 id="s1-title">학위논문 양식</h2>
+                </div>
+
+                <p>제출하는 PDF 파일에는 아래 다섯 가지 구성 요소가 <strong>모두</strong> 포함되어야 합니다.</p>
+
+                <ol class="num-list" aria-label="PDF 구성 요소">
+                    <li>
+                        <span class="n">01</span>
+                        <span class="txt"><strong>앞표지</strong>
+                            <span class="txt-sub">학위명, 제목, 이름, 학과, 대학명, 졸업년도 기재 · 1장</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="n">02</span>
+                        <span class="txt"><strong>속표지</strong>
+                            <span class="txt-sub">제목을 한국어와 영문으로 병기 · 1장</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="n">03</span>
+                        <span class="txt"><strong>승인서</strong>
+                            <span class="txt-sub">지도교수 서명이 들어간 인준서 · 1장</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="n">04</span>
+                        <span class="txt"><strong>검인서</strong>
+                            <span class="txt-sub">심사위원 전원의 서명 · 1장</span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="n">05</span>
+                        <span class="txt"><strong>본문</strong>
+                            <span class="txt-sub">Abstract부터 CV(이력서)까지 전체</span>
+                        </span>
+                    </li>
+                </ol>
+
+                <div class="featured-note" role="note">
+                    서명이 없는 가안(假案) 파일이거나, 승인서·검인서가 누락된 경우 검수 단계에서 반송됩니다.
+                </div>
+
+                <div class="sub" style="margin-top:1.5rem;">
+                    <h3>작성 양식 안내</h3>
+                    <p>여백, 글꼴, 인용 형식 등 세부 작성 양식은 학술정보팀 담당 범위가 아닙니다. 정확한 양식은 「대학원 학위논문 작성지침」을 참조해 주세요. <em>(문의: 학사팀, T.279-2442)</em></p>
+                    <p class="inline-note"><span class="note-label">양식 위치 —</span><a href="https://podium.postech.ac.kr/" target="_blank" rel="noopener">PODIUM</a> &gt; 상단 메뉴 더보기(···) &gt; 규정집 &gt; 제2편 학칙 &gt; 제3장 학위수여규정 &gt; D03-3-1~1. 지침과 템플릿이 모두 포함되어 있으며, 최종 제출 파일은 PDF 형식으로 작성합니다.</p>
+                </div>
+            </section>
+
+
+            <!-- =============================================
+                 섹션 2 — 제출 전 PDF 파일 점검
+            ============================================= -->
+            <section class="section" id="section-2" aria-labelledby="s2-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">2</div>
+                    <h2 id="s2-title">제출 전 PDF 파일 점검</h2>
+                </div>
+
+                <p>파일을 업로드하기 전 아래 사항을 확인해 주세요.</p>
+
+                <div class="two-col">
+                    <div>
+                        <h3 class="sub-h3">개인정보 보호</h3>
+                        <p>이력서(CV)에서 다음 항목을 <strong>모두 삭제</strong>해야 합니다.</p>
+                        <ul>
+                            <li>자택 주소, 학교 주소</li>
+                            <li>생년월일, 휴대폰 번호, 사무실 유선번호</li>
+                            <li>개인 이메일 주소</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="sub-h3">파일 형식</h3>
+                        <p>하나의 <strong>PDF 파일</strong>로만 제출이 가능합니다. 한글(.hwp)이나 워드(.doc) 원본 파일은 접수되지 않습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 인터랙티브 체크리스트 (localStorage 연동) -->
+                <div class="checklist-wrap" role="region" aria-label="제출 전 셀프 체크리스트">
+                    <div class="checklist-title">✓ 제출 전 셀프 체크리스트</div>
+
+                    <label class="cl-item" data-key="cl1">
+                        <input type="checkbox" style="display:none" aria-label="앞표지·속표지·승인서·검인서 포함 여부">
+                        <span class="cl-box" aria-hidden="true"></span>
+                        <span class="cl-label">앞표지·속표지·승인서·검인서가 모두 포함되어 있는가</span>
+                    </label>
+
+                    <label class="cl-item" data-key="cl2">
+                        <input type="checkbox" style="display:none" aria-label="서명 확인">
+                        <span class="cl-box" aria-hidden="true"></span>
+                        <span class="cl-label">승인서·검인서에 지도교수 및 심사위원 전원의 서명이 들어가 있는가</span>
+                    </label>
+
+                    <label class="cl-item" data-key="cl3">
+                        <input type="checkbox" style="display:none" aria-label="CV 개인정보 삭제 여부">
+                        <span class="cl-box" aria-hidden="true"></span>
+                        <span class="cl-label">CV에서 주소, 생년월일, 연락처, 이메일을 모두 삭제했는가</span>
+                    </label>
+
+                    <label class="cl-item" data-key="cl4">
+                        <input type="checkbox" style="display:none" aria-label="단일 PDF 병합 여부">
+                        <span class="cl-box" aria-hidden="true"></span>
+                        <span class="cl-label">단일 PDF 파일로 올바르게 병합되어 있는가</span>
+                    </label>
+
+                    <button class="cl-reset" id="clReset" type="button">초기화</button>
+                </div>
+            </section>
+
+
+            <!-- =============================================
+                 섹션 3 — 시스템 접속 및 로그인
+            ============================================= -->
+            <section class="section" id="section-3" aria-labelledby="s3-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">3</div>
+                    <h2 id="s3-title">시스템 접속 및 로그인</h2>
+                </div>
+
+                <div class="sub">
+                    <h3>인증 방법</h3>
+                    <div class="steps" aria-label="로그인 절차">
+                        <div class="step">
+                            <div class="step-n" aria-label="1단계">01</div>
+                            <div class="step-body">
+                                <strong>제출자 로그인 인증 (비밀번호 설정)</strong><br>
+                                <a href="https://postech.dcollection.net/login" target="_blank" rel="noopener">dCollection</a> 메인 화면 우측 상단의 <strong>[로그인]</strong> 클릭 &gt; <strong>[제출자 로그인 인증]</strong> &gt; POVIS 아이디, 이름, 이메일 입력 &gt; 인증 절차(수신된 이메일에서 인증 URL 클릭) &gt; 비밀번호 설정
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="2단계">02</div>
+                            <div class="step-body">
+                                <strong>로그인</strong><br>
+                                계정 / 비밀번호 (POVIS 계정, 설정한 비밀번호)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub">
+                    <h3>시스템 접속이 차단된 경우</h3>
+                    <p>졸업 정산 신청을 기간 내에 하지 않으면 시스템 접속이 차단될 수 있습니다. 아래 인적사항을 담당자 이메일(<a href="mailto:ekdls6816@postech.ac.kr">ekdls6816@postech.ac.kr</a>)로 보내주시면 수동 등록 처리 후 로그인이 가능합니다.</p>
+                    <ul>
+                        <li>학번, 이름, 학과명, 전화번호, 이메일 주소</li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <!-- =============================================
+                 섹션 4 — 원문 업로드 및 메타데이터 입력
+            ============================================= -->
+            <section class="section" id="section-4" aria-labelledby="s4-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">4</div>
+                    <h2 id="s4-title">원문 업로드 및 메타데이터 입력</h2>
+                </div>
+
+                <div class="sub">
+                    <h3>원문등록 ON 활용</h3>
+                    <p>파일 업로드 시 <strong>[원문등록 ON]</strong> 버튼을 활성화하면 제목·초록·목차 등이 자동으로 추출되어 입력 시간을 줄일 수 있습니다.</p>
+                    <p class="inline-note"><span class="note-label">주의 —</span> 영문 제목 뒤에 학교명(Pohang University of Science and Technology)이 자동으로 붙는 오류가 자주 발생합니다. 추출된 메타데이터를 확인하고 학교명을 삭제해 주세요.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>책갈피 — 본문 시작 쪽수 입력</h3>
+                    <p>문서에 표기된 논리적 쪽 번호가 아닌, <strong>Introduction이 시작되는 물리적 PDF 페이지 번호</strong>를 입력해야 합니다.</p>
+                    <p class="inline-note"><span class="note-label">예 —</span> Introduction의 쪽 번호가 "1"이지만, 실제 PDF 파일에서 5번째 페이지라면 <strong>"5"</strong>를 입력합니다.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>CCL (Creative Commons License) 설정</h3>
+                    <p>저작자 표시, 비영리, 변경 금지 등 CCL 조건은 모두 체크하는 것을 권장합니다. 연구 성과 보호 및 무단 활용 방지를 위해 필요합니다.</p>
+                    <p class="inline-note"><span class="note-label">주의 —</span> "동일조건변경허락" 항목은 포함하지 말아 주세요.</p>
+                </div>
+            </section>
+
+
+            <!-- =============================================
+                 섹션 5 — 저작권 설정
+            ============================================= -->
+            <section class="section" id="section-5" aria-labelledby="s5-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">5</div>
+                    <h2 id="s5-title">저작권 설정</h2>
+                </div>
+
+                <p>각 옵션의 차이를 확인하고 본인의 상황에 맞는 방식을 선택하세요.</p>
+
+                <div class="tbl-wrap">
+                    <table aria-label="저작권 설정 옵션 비교표">
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th><span class="tag tag-green">공개 동의</span> (권장)</th>
+                                <th><span class="tag tag-amber">조건부 동의</span> (엠바고)</th>
+                                <th><span class="tag tag-red">비공개</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>서비스 시점</strong></td>
+                                <td>졸업 후 1개월 뒤부터 검색·열람 가능</td>
+                                <td>설정한 공개일자 이후 서비스 시작<br><small>(최소 6개월 이상 권장)</small></td>
+                                <td>영구적으로 검색·열람 차단</td>
+                            </tr>
+                            <tr>
+                                <td><strong>권장 대상</strong></td>
+                                <td>특허 출원 또는 저널 게재를 이미 마친 경우</td>
+                                <td>연구소 연계 과제, 특허 예정, 학술지 투고 준비 중</td>
+                                <td>예외적인 경우<br><small>(지도교수 협의 필수)</small></td>
+                            </tr>
+                            <tr>
+                                <td><strong>실적 관리</strong></td>
+                                <td><a href="https://www.riss.kr/index.do" target="_blank" rel="noopener">RISS</a>, 네이버, Google Scholar 등에서 검색·인용 가능</td>
+                                <td>엠바고 기간 종료 후 공개 동의와 동일한 효과</td>
+                                <td>검색 차단으로 인용 불가, 연구 실적 증빙에 불리</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="sub" style="margin-top:1.5rem;">
+                    <h3>연구 성과 보호가 필요한 경우</h3>
+                    <p>저널 리비전 중 피규어(Figure) 중복이 우려되거나 도용 방지가 필요하다면, 저널 출판 예정일 또는 최소 6개월 이후로 공개 날짜를 설정해 연구 우선권(Priority)을 확보할 수 있습니다.</p>
+                    <p class="inline-note"><span class="note-label">참고 —</span> '비공개'보다 <strong>'조건부 동의(엠바고)'</strong>가 일반적으로 더 유리합니다. 초록(Abstract)은 반드시 공개 설정으로 유지해 주세요.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>조건부 동의(엠바고) 설정 순서</h3>
+                    <div class="steps" aria-label="엠바고 설정 단계">
+                        <div class="step">
+                            <div class="step-n" aria-label="1단계">01</div>
+                            <div class="step-body">공개 동의 선택</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="2단계">02</div>
+                            <div class="step-body">공개일자 설정</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="3단계">03</div>
+                            <div class="step-body">초록 포함(✓) 체크</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="4단계">04</div>
+                            <div class="step-body">사유 기재</div>
+                        </div>
+                    </div>
+
+                    <p class="note-rule">조건부 동의를 선택하면 시스템 분류상 '동의' 항목에 들어가지만, 설정한 공개일자가 도래하기 전까지는 검색 및 원문 서비스가 시작되지 않습니다. 엠바고 기간 동안은 비공개 상태가 유지됩니다.</p>
+                </div>
+            </section>
+
+
+            <!-- =============================================
+                 섹션 6 — 관리자 검수 및 최종 제출
+            ============================================= -->
+            <section class="section" id="section-6" aria-labelledby="s6-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">6</div>
+                    <h2 id="s6-title">관리자 검수 및 최종 제출</h2>
+                </div>
+
+                <div class="sub">
+                    <h3>승인 대기</h3>
+                    <p>제출 후 관리자의 검수 및 승인까지 보통 <strong>1~2일</strong>이 소요됩니다. 제출 마감일 직전에는 처리가 집중되어 지연될 수 있으니, 여유 있게 미리 제출해 주세요.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>수정이 필요한 경우</h3>
+                    <p>관리자에게 반송 요청 후 직접 수정이 가능합니다. 전화 또는 이메일(<a href="mailto:ekdls6816@postech.ac.kr">ekdls6816@postech.ac.kr</a>)로 요청해 주세요.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>저작권 동의서</h3>
+                    <p>저작권 동의서를 구글 폼으로 업로드하면 모든 절차가 완료됩니다. 제출확인서는 발급하지 않습니다.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>최종 서류 제출 절차</h3>
+                    <p>관리자 승인 후 '처리완료' 상태가 되면 저작권 동의서를 출력할 수 있습니다.</p>
+                    <div class="steps" aria-label="최종 제출 절차">
+                        <div class="step">
+                            <div class="step-n" aria-label="1단계">01</div>
+                            <div class="step-body">처리완료 상태 확인</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="2단계">02</div>
+                            <div class="step-body">저작권 동의서 출력</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="3단계">03</div>
+                            <div class="step-body">자필 서명 후 스캔</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-n" aria-label="4단계">04</div>
+                            <div class="step-body">구글 폼으로 업로드</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- =============================================
+                 섹션 7 — 알아두면 좋은 정보
+            ============================================= -->
+            <section class="section" id="section-7" aria-labelledby="s7-title">
+                <div class="section-hd">
+                    <div class="section-num" aria-hidden="true">7</div>
+                    <h2 id="s7-title">알아두면 좋은 정보</h2>
+                </div>
+
+                <div class="sub">
+                    <h3>학술정보 시스템별 검색 반영 시기</h3>
+                    <p>관리자 승인을 거쳐 '서비스 중(In Service)' 상태가 되면, 아래 순서대로 각 학술 시스템에 반영됩니다.</p>
+
+                    <div class="stat-list" aria-label="학술정보 시스템별 검색 반영 시기">
+                        <div class="stat-item">
+                            <span class="stat-num">1일</span>
+                            <span class="stat-desc">
+                                <span class="stat-svc"><a href="https://postech.dcollection.net/login" target="_blank" rel="noopener">dCollection</a> · <a href="https://oasis.postech.ac.kr/" target="_blank" rel="noopener">OASIS</a></span>
+                                <span class="stat-sys">승인 후 익일 이내 반영</span>
+                            </span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">3~4일</span>
+                            <span class="stat-desc">
+                                <span class="stat-svc"><a href="https://www.riss.kr/index.do" target="_blank" rel="noopener">RISS</a></span>
+                                <span class="stat-sys">학술연구정보서비스</span>
+                            </span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">수일~수주</span>
+                            <span class="stat-desc">
+                                <span class="stat-svc">도서관 홈페이지</span>
+                                <span class="stat-sys">ALMA 시스템</span>
+                            </span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">1주~1개월</span>
+                            <span class="stat-desc">
+                                <span class="stat-svc">네이버, Google 등 외부 포털</span>
+                                <span class="stat-sys">크롤링 주기에 따라 상이</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <p>정상 등록 여부는 <a href="https://postech.dcollection.net/login" target="_blank" rel="noopener">dCollection</a>에서 직접 검색해 확인하는 것이 가장 빠릅니다.</p>
+                </div>
+
+                <div class="sub">
+                    <h3>학술지 투고와 자기표절</h3>
+                    <p>대부분의 저널은 학위논문을 선행 출판물로 간주하지 않으므로, 본인 논문을 학위논문에 포함시키는 것은 일반적으로 안전합니다. 피규어 중복이 우려된다면 엠바고 설정을 활용할 수 있습니다.</p>
+                    <p>본인이 게재한 저널의 출처를 학위논문에 명확히 표기하면 자기표절 우려를 예방할 수 있습니다.</p>
+                </div>
+
+                <p style="margin-top:1rem; color:var(--c-text-muted); font-size:0.85rem;">
+                    문의사항은 위 연락처로 연락 바랍니다.
+                </p>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+
+<!-- ========================================================
+     FAQ 아코디언
+======================================================== -->
+<section class="faq-section" aria-labelledby="faq-heading">
+    <div class="faq-inner">
+        <h2 class="faq-heading" id="faq-heading">자주 묻는 질문</h2>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a1" type="button">
+                로그인이 안 됩니다. 어떻게 해야 하나요?
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a1" role="region">
+                <div class="faq-a-inner">
+                    <p>졸업 정산 신청을 기간 내에 하지 않은 경우 시스템 접속이 차단될 수 있습니다. 담당자(<a href="mailto:ekdls6816@postech.ac.kr">ekdls6816@postech.ac.kr</a>)에게 학번, 이름, 전화번호, 이메일 주소를 보내주시면 수동 등록 처리 후 로그인이 가능합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a2" type="button">
+                제출 후 내용을 수정하고 싶어요.
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a2" role="region">
+                <div class="faq-a-inner">
+                    <p>담당자(<a href="mailto:ekdls6816@postech.ac.kr">ekdls6816@postech.ac.kr</a>)에게 반송 요청을 하면 직접 수정이 가능합니다. 관리자 승인이 완료된 이후에는 수정이 제한될 수 있으니, 가급적 빠르게 연락해 주세요.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a3" type="button">
+                엠바고(조건부 동의)는 어떻게 설정하나요?
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a3" role="region">
+                <div class="faq-a-inner">
+                    <p>저작권 설정 화면에서 ① 공개 동의 선택 → ② 공개일자 설정 → ③ 초록 포함 체크 → ④ 사유 기재 순서로 진행합니다. 공개일자가 도래해야 원문 서비스로 전환되며, 그 전까지는 비공개 상태가 유지됩니다. 최소 6개월 이상을 권장합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a4" type="button">
+                제출한 논문이 언제 검색에 반영되나요?
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a4" role="region">
+                <div class="faq-a-inner">
+                    <p>관리자 승인 후 <a href="https://postech.dcollection.net/login" target="_blank" rel="noopener">dCollection</a>·<a href="https://oasis.postech.ac.kr/" target="_blank" rel="noopener">OASIS</a>는 약 1일 이내, <a href="https://www.riss.kr/index.do" target="_blank" rel="noopener">RISS</a>는 3~4일, 도서관 홈페이지(ALMA)는 수일~수주, 네이버·Google 등 외부 포털은 1주~1개월이 소요됩니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a5" type="button">
+                한글(.hwp) 파일로 제출할 수 있나요?
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a5" role="region">
+                <div class="faq-a-inner">
+                    <p>아니요. 하나의 PDF 파일로만 제출이 가능합니다. 앞표지, 속표지, 승인서, 검인서, 본문을 모두 하나의 PDF로 합쳐서 제출해 주세요.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a6" type="button">
+                제출확인서를 따로 받아야 하나요?
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a6" role="region">
+                <div class="faq-a-inner">
+                    <p>학술정보팀에서는 제출확인서를 별도로 발급하지 않습니다. 관리자 승인 후 '처리완료' 상태에서 저작권 동의서를 출력해 자필 서명·스캔 후 구글 폼으로 업로드하면 모든 절차가 완료됩니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a7" type="button">
+                학위논문에 발표한 저널 논문을 넣어도 자기표절인가요?
+                <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a7" role="region">
+                <div class="faq-a-inner">
+                    <p>대부분의 저널은 학위논문을 선행 출판물로 간주하지 않아 일반적으로 안전합니다. 게재한 저널의 출처를 학위논문 내에 명확히 표기하면 자기표절 우려를 예방할 수 있습니다. 피규어 중복이 우려된다면 엠바고 설정을 활용하는 것을 권장합니다.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ========================================================
+     푸터
+======================================================== -->
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">POSTECH 학술정보팀</div>
+            <div class="footer-sub">
+                학위논문 담당: <a href="mailto:ekdls6816@postech.ac.kr">ekdls6816@postech.ac.kr</a><br>
+                전화: <a href="tel:054-279-2543">054-279-2543</a><br>
+                Pohang University of Science and Technology Library
+            </div>
+        </div>
+        <div>
+            <div class="footer-col-title">관련 시스템</div>
+            <ul class="footer-links">
+                <li><a href="https://postech.dcollection.net/login" target="_blank" rel="noopener">dCollection — 학위논문 제출 시스템</a></li>
+                <li><a href="https://oasis.postech.ac.kr/" target="_blank" rel="noopener">OASIS — 포스텍 리포지터리</a></li>
+                <li><a href="https://www.riss.kr/index.do" target="_blank" rel="noopener">RISS — 학술연구정보서비스</a></li>
+                <li><a href="https://podium.postech.ac.kr/" target="_blank" rel="noopener">PODIUM — 학위논문 작성지침</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © POSTECH Library · Academic Information Team. 이 페이지의 내용은 변경될 수 있습니다.
+    </div>
+</footer>
+
+
+<!-- 맨 위로 버튼 -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="페이지 맨 위로" type="button">↑</button>
+
+
+<!-- ========================================================
+     문의 모달
+======================================================== -->
+<div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+        <button class="modal-close" id="modalClose" aria-label="닫기" type="button">×</button>
+        <div class="modal-title" id="modalTitle">학술정보팀 학위논문 담당</div>
+        <div class="modal-row">
+            <span class="modal-label">전화</span>
+            <span class="modal-val"><a href="tel:054-279-2543">054-279-2543</a></span>
+        </div>
+        <div class="modal-row">
+            <span class="modal-label">이메일</span>
+            <span class="modal-val"><a href="mailto:ekdls6816@postech.ac.kr">ekdls6816@postech.ac.kr</a></span>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================
+     JavaScript
+======================================================== -->
+<script>
+    /* =====================================================
+       TOC 스크롤 스파이
+    ===================================================== */
+    const sections = document.querySelectorAll('.section');
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const headerH  = parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10
+    ) || 60;
+
+    const spy = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(l => l.classList.remove('active'));
+                const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, {
+        rootMargin: `-${headerH + 16}px 0px -62% 0px`,
+        threshold: 0
+    });
+
+    sections.forEach(s => spy.observe(s));
+
+
+    /* =====================================================
+       체크리스트 — localStorage 연동
+    ===================================================== */
+    const CL_KEY = 'postech_cl_';
+
+    function initChecklist() {
+        document.querySelectorAll('.cl-item').forEach(item => {
+            const key = item.dataset.key;
+            if (localStorage.getItem(CL_KEY + key) === '1') {
+                item.classList.add('checked');
+            }
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const next = !item.classList.contains('checked');
+                item.classList.toggle('checked', next);
+                localStorage.setItem(CL_KEY + key, next ? '1' : '0');
+            });
+        });
+    }
+
+    document.getElementById('clReset').addEventListener('click', () => {
+        document.querySelectorAll('.cl-item').forEach(item => {
+            item.classList.remove('checked');
+            localStorage.removeItem(CL_KEY + item.dataset.key);
+        });
+    });
+
+    initChecklist();
+
+
+    /* =====================================================
+       FAQ 아코디언
+    ===================================================== */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const isOpen  = btn.getAttribute('aria-expanded') === 'true';
+            const panelId = btn.getAttribute('aria-controls');
+            const panel   = document.getElementById(panelId);
+
+            /* 모두 닫기 */
+            document.querySelectorAll('.faq-q').forEach(b => {
+                b.setAttribute('aria-expanded', 'false');
+                document.getElementById(b.getAttribute('aria-controls')).style.maxHeight = '0';
+            });
+
+            /* 닫혀 있었으면 열기 */
+            if (!isOpen) {
+                btn.setAttribute('aria-expanded', 'true');
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+            }
+        });
+    });
+
+
+    /* =====================================================
+       모바일 햄버거 메뉴
+    ===================================================== */
+    const hamburger = document.getElementById('hamburger');
+    const sidebar   = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+
+    function openDrawer() {
+        sidebar.classList.add('open');
+        overlay.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+        sidebar.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+    overlay.addEventListener('click', closeDrawer);
+
+    /* 목차 링크 클릭 시 드로어 닫기 */
+    tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 900) closeDrawer();
+        });
+    });
+
+
+    /* =====================================================
+       문의 모달
+    ===================================================== */
+    const contactBtn   = document.getElementById('contactBtn');
+    const contactModal = document.getElementById('contactModal');
+    const modalClose   = document.getElementById('modalClose');
+
+    function openModal() {
+        contactModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        modalClose.focus();
+    }
+
+    function closeModal() {
+        contactModal.classList.remove('open');
+        document.body.style.overflow = '';
+        contactBtn.focus();
+    }
+
+    contactBtn.addEventListener('click', openModal);
+    modalClose.addEventListener('click', closeModal);
+
+    /* 모달 바깥 클릭으로 닫기 */
+    contactModal.addEventListener('click', e => {
+        if (e.target === contactModal) closeModal();
+    });
+
+    /* ESC 키로 닫기 */
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && contactModal.classList.contains('open')) {
+            closeModal();
+        }
+    });
+
+
+    /* =====================================================
+       맨 위로 버튼
+    ===================================================== */
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+        scrollTopBtn.classList.toggle('show', window.scrollY > 450);
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
